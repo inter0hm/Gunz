@@ -1,3 +1,5 @@
+
+
 #include "stdafx.h"
 #include "MSafeUDP.h"
 #include "MBasePacket.h"
@@ -12,7 +14,7 @@
 #endif
 
 
-// ¿¡ÀÌ½º»ç°¡ ÄÄÆÄÀÏ ÇÒ °æ¿ì¿¡´Â ÀÌ _OLD_SAFEUDP¸¦ È°¼ºÈ­ÇØÁÖ¼¼¿ä - ³²±â·æ(2005/07/26)
+// ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ _OLD_SAFEUDPï¿½ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½(2005/07/26)
 //#define _OLD_SAFEUDP
 
 
@@ -110,7 +112,7 @@ bool MNetLink::MakeSockAddr(char* pszIP, int nPort, sockaddr_in* pSockAddr)
 	DWORD dwAddr = inet_addr(pszIP);
 	if (dwAddr != INADDR_NONE) {
 		memcpy(&(RemoteAddr.sin_addr), &dwAddr, 4);
-	} else {		// ¿¬°áÇÒ host nameÀ» ÀÔ·ÂÇÑ °æ¿ì
+	} else {		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ host nameï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		HOSTENT* pHost = gethostbyname(pszIP);
 		if (pHost == NULL) {	// error
 //#ifdef _DEBUG
@@ -120,8 +122,8 @@ bool MNetLink::MakeSockAddr(char* pszIP, int nPort, sockaddr_in* pSockAddr)
 		}
 		memcpy((char FAR *)&(RemoteAddr.sin_addr), pHost->h_addr, pHost->h_length);
 	}
-	// Socket Error°¡ °¡²û ³­´Ù?
-	//Gunzd.exeÀÇ 0x7c94b21a¿¡ Ã¹Â° ¿¹¿Ü°¡ ÀÖ½À´Ï´Ù. 0xC0000005: 0xcdcdcddd À§Ä¡¸¦ ±â·ÏÇÏ´Â µ¿¾È ¾×¼¼½º À§¹ÝÀÌ ¹ß»ýÇß½À´Ï´Ù.
+	// Socket Errorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?
+	//Gunzd.exeï¿½ï¿½ 0x7c94b21aï¿½ï¿½ Ã¹Â° ï¿½ï¿½ï¿½Ü°ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. 0xC0000005: 0xcdcdcddd ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 	memcpy(pSockAddr, &RemoteAddr, sizeof(sockaddr_in));
 	return true;
 }
@@ -233,7 +235,7 @@ bool MNetLink::SetACKWait(MSafePacket* pPacket, DWORD dwPacketSize)
 	MACKWaitItem* pACKWaitItem = new MACKWaitItem;
 	pACKWaitItem->pPacket = pPacket;
 	pACKWaitItem->dwPacketSize = dwPacketSize;
-	pACKWaitItem->nSendCount = 1;		// SendQueue ¿¡ ³Ö¾úÁö¸¸ º¸³Â´Ù°í °¡Á¤
+	pACKWaitItem->nSendCount = 1;		// SendQueue ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	MTime::GetTime(&pACKWaitItem->tvFirstSent);
 	MTime::GetTime(&pACKWaitItem->tvLastSent);
 	m_ACKWaitQueue.push_back(pACKWaitItem);
@@ -617,7 +619,7 @@ bool MSocketThread::FlushSend()
 				m_SendList.erase(itor);
 			}
 		#else
-			// °ÇÁî¿¡¼­´Â SAFE_UDP_FLAG_SAFE_PACKET¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+			// ï¿½ï¿½ï¿½î¿¡ï¿½ï¿½ï¿½ï¿½ SAFE_UDP_FLAG_SAFE_PACKETï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 			delete pSendItem->pPacket;
 			delete pSendItem;
 			m_SendList.erase(itor);
